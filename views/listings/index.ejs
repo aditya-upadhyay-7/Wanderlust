@@ -3,13 +3,18 @@
 <style>
     #filters{
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
+    }
+    @media (max-width: 991px){
+        #filters{
+            overflow-x: scroll;
+        }
     }
 
     .filter{
         text-align: center;
-        margin-right: 2rem;
+        margin-right: 2.5rem;
         margin-top: 2rem;
         opacity: 0.8;
     }
@@ -20,7 +25,7 @@
     }
 
     .filter p{
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .tax-info{
@@ -30,14 +35,14 @@
     .tax-toggle{
         border: 1px solid black;
         border-radius: 1rem;
+        width: 251px;
         height: 3.25rem;
         padding: 1rem;
-        margin-left: 2rem;
+        margin-top: 0.75rem;
         display: flex;
         align-items: center;
     }
 </style>
-
 
 <body>
     <div id="filters">
@@ -100,17 +105,17 @@
             <i class="fa-solid fa-umbrella-beach"></i>
             <p>Beach</p>
         </div>
-        
+    </div> 
         <div class="tax-toggle">
             <div class="form-check-reverse form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
             </div>
         </div>
-    </div>
+    
 <hr>
     <%if(search){%>
-        <h4>Listings related to: <%= search %></h4>
+        <h3>Showing result for: <b><%= search %></b></h3>
     <%}%>
     <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
 

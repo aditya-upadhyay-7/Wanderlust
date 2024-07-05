@@ -6,12 +6,12 @@
 </script>
 
 <div class="row mt-3">
-    <div class="col-8 offset-3">
+    <div class="col-8 offset-2">
     
     <h3><%= listing.title%></h3>
     </div>
 
-<div class="card col-6 offset-3 show-card listing-card">
+<div class="card col-8 offset-2 show-card listing-card">
     <img 
     src="<%= listing.image.url %>" 
     class="card-img-top show-img" 
@@ -19,7 +19,7 @@
     >
 
   <div class="card-body">
-        <p class="card-text">Owned by: <i><%=listing.owner.username %></i> </p>
+        <p class="card-text" style="margin-top: 1rem;">Owned by: <i><%=listing.owner.username %></i> </p>
         <p class="card-text"> <%= listing.description %> </p>
         <p class="card-text">Price:  &#8377; <%= listing.price.toLocaleString("en-IN")%> / night</p>
         <p class="card-text">Location:  <%= listing.location %> </p>
@@ -41,7 +41,7 @@
     </div>
     <% } %>
 
-    <div class="col-8 offset-3 mb-3">
+    <div class="col-8 offset-2 mb-3">
         
         <% if(currUser) { %>
         <hr/>
@@ -81,15 +81,19 @@
         <div class="row">
         <p><b>All Reviews</b></p>
         <% for(review of listing.reviews) {%>
-           <div class="card col-5 ms-3 mb-3">
+           <div class="card col-9 ms-3 mb-3">
             <div class="card-body">
                 <h6 class="card-title">Created by: @<i><%= review.author.username %></i></h6>
+                <hr>
                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
-                <p class="card-text"> <%= review.comment %></p>
-            
+                <p class="card-text" style="margin-bottom: 1rem;"> <%= review.comment %></p>
+
+            <% if(review.author.equals(currUser._id)) { %>
             <form class="mb-3" method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
                 <button class="btn btn-sm btn-dark">Delete</button>
             </form>
+            <%}%>
+            
            </div>
           </div>
         <% } %>
@@ -97,7 +101,7 @@
     <% } %>
   </div>
 
-    <div class="col-8 offset-3 mb-3">
+    <div class="col-8 offset-2 mb-3">
         <h3>Where you'll be</h3>
         <div id="map"></div>
     </div>
